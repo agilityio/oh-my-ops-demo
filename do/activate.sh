@@ -12,7 +12,7 @@ DO_VERSION="0.1.1"
 # The array of plugin name to be included. If this variable is not specified
 # all plugins found will be included by default.
 
-DO_PLUGINS="proj git full prompt banner mongo postgres keycloak neo4j redis npm tmux make sphinx"
+DO_PLUGINS="proj git full prompt banner mongo postgres keycloak neo4j redis npm tmux make sphinx exec"
 DO_ENVS='local prod'
 
 cd do
@@ -77,6 +77,11 @@ _do_repo 'do' 'do'
 # ------------------------------------------------------------------------------
 _do_repo 'make' 'make'
 _do_make_cli 'make'
+
+# ------------------------------------------------------------------------------
+# exec plugin
+# ------------------------------------------------------------------------------
+_do_exec 'proj' 'bin'
 
 # ------------------------------------------------------------------------------
 # sphinx plugin
