@@ -12,7 +12,7 @@ DO_VERSION="0.1.1"
 # The array of plugin name to be included. If this variable is not specified
 # all plugins found will be included by default.
 
-DO_PLUGINS="proj git full prompt banner mongo postgres keycloak neo4j redis npm tmux make sphinx exec mvn"
+DO_PLUGINS="proj git full prompt banner mongo postgres keycloak neo4j redis npm tmux make sphinx exec mvn vg"
 DO_ENVS='local prod'
 
 cd do
@@ -119,6 +119,18 @@ _do_log_info 'app' 'Turns on keycloak support, please try:
   * do-proj-keycloak-logs: to see the latest logs from the postgres db server
   * do-proj-keycloak-attach: to attach to the postgres running docker container.
 '
+
+# ------------------------------------------------------------------------------
+# vg plugin
+# ------------------------------------------------------------------------------
+_do_repo 'vg' 'vgdemo'
+_do_vg 'vgdemo'
+_do_log_info 'app' 'Turns on vagrant support, please try:
+  * do-vgdemo-vg-help: to see available commands
+  * do-vgdemo-vg-start: starts and provisions the vagrant environment.
+  * do-vgdemo-vg-stop: stops the vagrant machine.
+  * do-vgdemo-vg-attach: connects to machine via SSH.
+'  
 
 # ------------------------------------------------------------------------------
 # tmux plugin
