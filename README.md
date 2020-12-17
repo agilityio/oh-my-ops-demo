@@ -2,3 +2,9 @@
 
 OH-MY-OPS DEMO
 ==
+
+To runs:
+
+```
+source do/activate.sh
+```

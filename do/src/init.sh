@@ -36,7 +36,5 @@ function do-update() {
 }
 
 _do_init &&
-# source .oh-my-ops/activate.sh $@
+source .oh-my-ops/activate.sh $@
 
-# shellcheck disable=SC2068
-source ~/myprojects/trungngo/src/oh-my-ops/activate.sh $@
