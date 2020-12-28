@@ -35,6 +35,7 @@ function do-update() {
   _do_dir_pop
 }
 
-_do_init &&
-source .oh-my-ops/activate.sh $@
+#_do_init &&
+#source .oh-my-ops/activate.sh $@
 
+source ~/myprojects/trungngo/src/oh-my-ops/activate.sh $@

@@ -12,7 +12,7 @@ DO_VERSION="0.1.2"
 # The array of plugin name to be included. If this variable is not specified
 # all plugins found will be included by default.
 
-DO_PLUGINS="proj git full prompt banner mongo postgres keycloak neo4j redis npm tmux make sphinx exec mvn vg"
+DO_PLUGINS="proj git full prompt banner mongo postgres keycloak neo4j redis npm tmux make sphinx exec mvn vg artifactory rabbitmq gitlab drone"
 DO_ENVS='local prod'
 
 cd do
@@ -41,13 +41,13 @@ _do_full_proj 'proj'
 
 # ------------------------------------------------------------------------------
 # git plugin
-# 
+#
 # Please try:
 # ------------------------------------------------------------------------------
 # Enables git support at the proj level.
 # If you do multi-repo approach, you can specify the project starts
 # at the parent directory of all git repositories
-# and the defines sub repos below that and enable git support for all 
+# and the defines sub repos below that and enable git support for all
 # of them. Notes that this plugin expects to see "./.git" directory exists.
 _do_git 'proj'
 _do_log_info 'app' 'Turns on git support, please try:
@@ -108,6 +108,56 @@ _do_log_info 'app' 'Turns on neo4j support, please try:
 '
 
 # ------------------------------------------------------------------------------
+# artifactory plugin
+# ------------------------------------------------------------------------------
+_do_artifactory 'proj'
+_do_log_info 'app' 'Turns on artifactory support, please try:
+  * do-proj-artifactory-help: to see available commands
+  * do-proj-artifactory-start: to start the artifactory server
+  * do-proj-artifactory-stop: to stop the artifactory server
+  * do-proj-artifactory-status: to see the status the artifactory server
+  * do-proj-artifactory-logs: to see the latest logs from the artifactory server
+  * do-proj-artifactory-attach: to attach to the artifactory running docker container.
+'
+# ------------------------------------------------------------------------------
+# rabbitmq plugin
+# ------------------------------------------------------------------------------
+_do_rabbitmq 'proj'
+_do_log_info 'app' 'Turns on rabbitmq support, please try:
+  * do-proj-rabbitmq-help: to see available commands
+  * do-proj-rabbitmq-start: to start the rabbitmq server
+  * do-proj-rabbitmq-stop: to stop the rabbitmq server
+  * do-proj-rabbitmq-status: to see the status the rabbitmq server
+  * do-proj-rabbitmq-logs: to see the latest logs from the rabbitmq server
+  * do-proj-rabbitmq-attach: to attach to the rabbitmq running docker container.
+'
+
+# ------------------------------------------------------------------------------
+# gitlab plugin
+# ------------------------------------------------------------------------------
+_do_gitlab 'proj'
+_do_log_info 'app' 'Turns on gitlab support, please try:
+  * do-proj-gitlab-help: to see available commands
+  * do-proj-gitlab-start: to start the gitlab server
+  * do-proj-gitlab-stop: to stop the gitlab server
+  * do-proj-gitlab-status: to see the status the gitlab server
+  * do-proj-gitlab-logs: to see the latest logs from the gitlab server
+  * do-proj-gitlab-attach: to attach to the gitlab running docker container.
+'
+# ------------------------------------------------------------------------------
+# drone plugin
+# ------------------------------------------------------------------------------
+_do_drone 'proj'
+_do_log_info 'app' 'Turns on drone support, please try:
+  * do-proj-drone-help: to see available commands
+  * do-proj-drone-start: to start the drone server
+  * do-proj-drone-stop: to stop the drone server
+  * do-proj-drone-status: to see the status the drone server
+  * do-proj-drone-logs: to see the latest logs from the drone server
+  * do-proj-drone-attach: to attach to the drone running docker container.
+'
+
+# ------------------------------------------------------------------------------
 # keycloak plugin
 # ------------------------------------------------------------------------------
 _do_keycloak 'proj'
@@ -130,7 +180,7 @@ _do_log_info 'app' 'Turns on vagrant support, please try:
   * do-vgdemo-vg-start: starts and provisions the vagrant environment.
   * do-vgdemo-vg-stop: stops the vagrant machine.
   * do-vgdemo-vg-attach: connects to machine via SSH.
-'  
+'
 
 # ------------------------------------------------------------------------------
 # tmux plugin
@@ -158,7 +208,7 @@ _do_sphinx 'doc'
 
 _do_log_info 'app' 'Turns on sphinx support at ./doc directory, please try:
   * do-doc-sphinx-help: to see available commands
-  * do-doc-sphinx-start: to start the live reload server. 
+  * do-doc-sphinx-start: to start the live reload server.
     After this, you can access the live html document at http://localhost:8383
   * do-doc-sphinx-stop: to stop the live html document server.
   * do-doc-sphinx-status: to see the status the sphinx doc server
@@ -203,9 +253,9 @@ _do_banner 'Demo.'
 
 # Marks that this is the end of the activation script.
 # This will trigger any additional command send in with -e argument.
-# For instance, if you run the script with 
-# bash do/activate.sh -e "do-proj-full-clean" -e "do-proj-full-build" then 
+# For instance, if you run the script with
+# bash do/activate.sh -e "do-proj-full-clean" -e "do-proj-full-build" then
 # the two commands, clean & build shall be executed at this point.
-# This bring the ability to run any command without the 
+# This bring the ability to run any command without the
 # need of activate the oh-my-ops environment.
 _do_activate_finished
