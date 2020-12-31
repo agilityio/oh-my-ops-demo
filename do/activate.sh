@@ -12,7 +12,10 @@ DO_VERSION="0.1.2"
 # The array of plugin name to be included. If this variable is not specified
 # all plugins found will be included by default.
 
-DO_PLUGINS="proj git full prompt banner mongo postgres keycloak neo4j redis npm tmux make sphinx exec mvn vg artifactory rabbitmq gitlab drone"
+DO_PLUGINS="proj git full prompt banner docker docker-compose
+mongo postgres keycloak neo4j
+redis npm tmux make sphinx exec mvn vg artifactory rabbitmq gitlab drone registry"
+
 DO_ENVS='local prod'
 
 cd do
@@ -156,6 +159,18 @@ _do_log_info 'app' 'Turns on drone support, please try:
   * do-proj-drone-logs: to see the latest logs from the drone server
   * do-proj-drone-attach: to attach to the drone running docker container.
 '
+# ------------------------------------------------------------------------------
+# drone plugin
+# ------------------------------------------------------------------------------
+_do_registry 'proj'
+_do_log_info 'app' 'Turns on drone support, please try:
+  * do-proj-registry-help: to see available commands
+  * do-proj-registry-start: to start the registry server
+  * do-proj-registry-stop: to stop the registry server
+  * do-proj-registry-status: to see the status the registry server
+  * do-proj-registry-logs: to see the latest logs from the registry server
+  * do-proj-registry-attach: to attach to the registry running docker container.
+'
 
 # ------------------------------------------------------------------------------
 # keycloak plugin
@@ -197,7 +212,6 @@ _do_log_info 'app' 'Turns on script exec support for ./bin directory, please try
   * do-proj-exec-good-bye: to trigger the "bin/good/bye.sh" script.
 '
 
-
 # ------------------------------------------------------------------------------
 # sphinx plugin
 # ------------------------------------------------------------------------------
@@ -229,6 +243,31 @@ _do_log_info 'app' 'Turns on make support at ./make directory, please try:
   * do-makedemo-make-help: to see available commands
   * do-makedemo-make-clean: to trigger the "clean" target defined in the Makefile.
   * do-makedemo-make-build: to trigger the "build" target defined in the Makefile.
+'
+# ------------------------------------------------------------------------------
+# docker plugin
+# ------------------------------------------------------------------------------
+
+# Makes 'docker' directory is a sub repository, named it dockerdemo.
+_do_repo 'docker' 'dockerdemo'
+
+_do_docker 'dockerdemo'
+_do_log_info 'app' 'Turns on docker support at ./docker directory, please try:
+  * do-dockerdemo-docker-help: to see available commands
+  * do-dockerdemo-docker-build: to build the docker file found.
+'
+
+# ------------------------------------------------------------------------------
+# docker-compose plugin
+# ------------------------------------------------------------------------------
+
+# Makes 'docker' directory is a sub repository, named it dockerdemo.
+_do_repo 'docker-compose' 'dockercomposedemo'
+
+_do_docker_compose 'dockercomposedemo'
+_do_log_info 'app' 'Turns on docker support at ./docker-compose directory, please try:
+  * do-dockercomposedemo-docker-compose-help: to see available commands
+  * do-dockercomposedemo-docker-compose-build: to build the docker compose file found.
 '
 
 # ------------------------------------------------------------------------------
