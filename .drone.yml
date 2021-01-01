@@ -6,7 +6,7 @@ steps:
 - name: test
   image: ubuntu:18.04
   commands:
-    - bash echo "hello ${HELLO}"
+    - echo "hello ${HELLO}"
   environment:
     HELLO:
       from_secret: hello
