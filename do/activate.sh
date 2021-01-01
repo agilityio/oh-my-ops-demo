@@ -14,7 +14,8 @@ DO_VERSION="0.1.2"
 
 DO_PLUGINS="proj git full prompt banner docker docker-compose
 mongo postgres keycloak neo4j
-redis npm tmux make sphinx exec mvn vg artifactory rabbitmq gitlab drone registry"
+redis npm tmux make sphinx exec mvn vg artifactory rabbitmq gitlab drone
+registry pypiserver"
 
 DO_ENVS='local prod'
 
@@ -23,7 +24,6 @@ source "src/init.sh"
 cd ..
 
 _do_log_level_info 'app'
-
 
 # ------------------------------------------------------------------------------
 # proj plugin
@@ -160,16 +160,29 @@ _do_log_info 'app' 'Turns on drone support, please try:
   * do-proj-drone-attach: to attach to the drone running docker container.
 '
 # ------------------------------------------------------------------------------
-# drone plugin
+# registry plugin
 # ------------------------------------------------------------------------------
 _do_registry 'proj'
-_do_log_info 'app' 'Turns on drone support, please try:
+_do_log_info 'app' 'Turns on registry support, please try:
   * do-proj-registry-help: to see available commands
   * do-proj-registry-start: to start the registry server
   * do-proj-registry-stop: to stop the registry server
   * do-proj-registry-status: to see the status the registry server
   * do-proj-registry-logs: to see the latest logs from the registry server
   * do-proj-registry-attach: to attach to the registry running docker container.
+'
+
+# ------------------------------------------------------------------------------
+# pypiserver plugin
+# ------------------------------------------------------------------------------
+_do_pypiserver 'proj'
+_do_log_info 'app' 'Turns on pypiserver support, please try:
+  * do-proj-pypiserver-help: to see available commands
+  * do-proj-pypiserver-start: to start the pypiserver server
+  * do-proj-pypiserver-stop: to stop the pypiserver server
+  * do-proj-pypiserver-status: to see the status the pypiserver server
+  * do-proj-pypiserver-logs: to see the latest logs from the pypiserver server
+  * do-proj-pypiserver-attach: to attach to the pypiserver running docker container.
 '
 
 # ------------------------------------------------------------------------------
@@ -288,7 +301,6 @@ _do_log_info 'app' 'Turns on maven build support at ./mvn/blog directory, please
 # ------------------------------------------------------------------------------
 # http://patorjk.com/software/taag/#p=display&f=ANSI%20Shadow&t=hugepig
 _do_banner 'Demo.'
-
 
 # Marks that this is the end of the activation script.
 # This will trigger any additional command send in with -e argument.
