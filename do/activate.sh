@@ -21,9 +21,10 @@ DO_ENVS='local prod'
 
 cd do
 source "src/init.sh"
+source "src/drone.sh"
 cd ..
 
-_do_log_level_info 'app'
+_do_log_level_debug 'app'
 
 # ------------------------------------------------------------------------------
 # proj plugin

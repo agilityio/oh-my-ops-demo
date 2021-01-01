@@ -1,0 +1,9 @@
+kind: pipeline
+type: docker
+name: default
+
+steps:
+- name: test
+  image: ubuntu:18.04
+  commands:
+    - bash do/demo -e do-proj-full-help
