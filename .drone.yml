@@ -6,4 +6,7 @@ steps:
 - name: test
   image: ubuntu:18.04
   commands:
-    - bash do/activate.sh -e do-proj-full-help
+    - bash echo "hello ${HELLO}"
+  environment:
+    HELLO:
+      from_secret: hello
