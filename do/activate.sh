@@ -310,3 +310,4 @@ _do_banner 'Demo.'
 # This bring the ability to run any command without the
 # need of activate the oh-my-ops environment.
 _do_activate_finished
+
