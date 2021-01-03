@@ -24,7 +24,7 @@ source "src/init.sh"
 source "src/drone.sh"
 cd ..
 
-_do_log_level_debug 'app'
+_do_log_level_info 'app'
 
 # ------------------------------------------------------------------------------
 # proj plugin
