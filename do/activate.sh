@@ -14,9 +14,8 @@ DO_VERSION="0.1.2"
 
 DO_PLUGINS="proj git full prompt banner hostfile
 docker docker-compose
-mongo postgres keycloak neo4j
-redis npm tmux make sphinx exec mvn vg artifactory rabbitmq gitlab drone
-registry pypiserver"
+mongo postgres keycloak neo4j redis artifactory rabbitmq gitlab drone registry pypiserver sftp
+npm tmux make sphinx exec mvn vg"
 
 DO_ENVS='local prod'
 
@@ -61,6 +60,18 @@ _do_log_info 'app' 'Turns on git support, please try:
 '
 
 
+# ------------------------------------------------------------------------------
+# sftp plugin
+# ------------------------------------------------------------------------------
+_do_sftp 'proj'
+_do_log_info 'app' 'Turns on sftp support, please try:
+  * do-proj-sftp-help: to see available commands
+  * do-proj-sftp-start: to start the sftp db server
+  * do-proj-sftp-stop: to stop the sftp db server
+  * do-proj-sftp-status: to see the status the sftp db server
+  * do-proj-sftp-logs: to see the latest logs from the sftp db server
+  * do-proj-sftp-attach: to attach to the mongodb running docker container.
+'
 # ------------------------------------------------------------------------------
 # mongo plugin
 # ------------------------------------------------------------------------------
