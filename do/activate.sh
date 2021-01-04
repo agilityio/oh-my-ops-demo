@@ -14,7 +14,9 @@ DO_VERSION="0.1.2"
 
 DO_PLUGINS="proj git full prompt banner hostfile
 docker docker-compose
-mongo postgres keycloak neo4j redis artifactory rabbitmq gitlab drone registry pypiserver sftp
+mongo postgres keycloak neo4j redis rabbitmq maildev
+artifactory registry pypiserver
+gitlab drone sftp jenkins
 npm tmux make sphinx exec mvn vg"
 
 DO_ENVS='local prod'
@@ -150,6 +152,19 @@ _do_log_info 'app' 'Turns on rabbitmq support, please try:
 '
 
 # ------------------------------------------------------------------------------
+# maildev plugin
+# ------------------------------------------------------------------------------
+_do_maildev 'proj'
+_do_log_info 'app' 'Turns on maildev support, please try:
+  * do-proj-maildev-help: to see available commands
+  * do-proj-maildev-start: to start the maildev server
+  * do-proj-maildev-stop: to stop the maildev server
+  * do-proj-maildev-status: to see the status the maildev server
+  * do-proj-maildev-logs: to see the latest logs from the maildev server
+  * do-proj-maildev-attach: to attach to the maildev running docker container.
+'
+
+# ------------------------------------------------------------------------------
 # gitlab plugin
 # ------------------------------------------------------------------------------
 _do_gitlab 'proj'
@@ -173,6 +188,19 @@ _do_log_info 'app' 'Turns on drone support, please try:
   * do-proj-drone-logs: to see the latest logs from the drone server
   * do-proj-drone-attach: to attach to the drone running docker container.
 '
+# ------------------------------------------------------------------------------
+# jenkins plugin
+# ------------------------------------------------------------------------------
+_do_jenkins 'proj'
+_do_log_info 'app' 'Turns on jenkins support, please try:
+  * do-proj-jenkins-help: to see available commands
+  * do-proj-jenkins-start: to start the jenkins server
+  * do-proj-jenkins-stop: to stop the jenkins server
+  * do-proj-jenkins-status: to see the status the jenkins server
+  * do-proj-jenkins-logs: to see the latest logs from the jenkins server
+  * do-proj-jenkins-attach: to attach to the jenkins running docker container.
+'
+
 # ------------------------------------------------------------------------------
 # registry plugin
 # ------------------------------------------------------------------------------
