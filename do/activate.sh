@@ -14,7 +14,8 @@ DO_VERSION="0.1.2"
 
 DO_PLUGINS="proj git full prompt banner hostfile
 docker docker-compose
-mongo postgres keycloak neo4j redis rabbitmq maildev
+mongo postgres keycloak neo4j redis rabbitmq
+maildev jupyter
 artifactory registry pypiserver
 gitlab drone sftp jenkins
 npm tmux make sphinx exec mvn vg"
@@ -162,6 +163,19 @@ _do_log_info 'app' 'Turns on maildev support, please try:
   * do-proj-maildev-status: to see the status the maildev server
   * do-proj-maildev-logs: to see the latest logs from the maildev server
   * do-proj-maildev-attach: to attach to the maildev running docker container.
+'
+
+# ------------------------------------------------------------------------------
+# jupyter plugin
+# ------------------------------------------------------------------------------
+_do_jupyter 'proj'
+_do_log_info 'app' 'Turns on jupyter support, please try:
+  * do-proj-jupyter-help: to see available commands
+  * do-proj-jupyter-start: to start the jupyter server
+  * do-proj-jupyter-stop: to stop the jupyter server
+  * do-proj-jupyter-status: to see the status the jupyter server
+  * do-proj-jupyter-logs: to see the latest logs from the jupyter server
+  * do-proj-jupyter-attach: to attach to the jupyter running docker container.
 '
 
 # ------------------------------------------------------------------------------
