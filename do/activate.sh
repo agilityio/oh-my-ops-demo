@@ -12,7 +12,8 @@ DO_VERSION="0.1.2"
 # The array of plugin name to be included. If this variable is not specified
 # all plugins found will be included by default.
 
-DO_PLUGINS="proj git full prompt banner docker docker-compose
+DO_PLUGINS="proj git full prompt banner hostfile
+docker docker-compose
 mongo postgres keycloak neo4j
 redis npm tmux make sphinx exec mvn vg artifactory rabbitmq gitlab drone
 registry pypiserver"
@@ -58,6 +59,7 @@ _do_log_info 'app' 'Turns on git support, please try:
   * do-proj-git-help: to see available commands
   * do-proj-git-status: to see the status of the git tree.
 '
+
 
 # ------------------------------------------------------------------------------
 # mongo plugin
