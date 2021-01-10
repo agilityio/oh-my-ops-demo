@@ -17,7 +17,7 @@ docker docker-compose
 mongo postgres keycloak neo4j redis rabbitmq
 maildev jupyter
 artifactory registry pypiserver
-gitlab drone sftp jenkins
+gitlab gitlabrunner drone sftp jenkins
 npm tmux make sphinx exec mvn vg"
 
 DO_ENVS='local prod'
@@ -25,6 +25,7 @@ DO_ENVS='local prod'
 cd do
 source "src/init.sh"
 source "src/drone.sh"
+source "src/gitlabrunner.sh"
 cd ..
 
 _do_log_level_info 'app'
@@ -189,6 +190,18 @@ _do_log_info 'app' 'Turns on gitlab support, please try:
   * do-proj-gitlab-status: to see the status the gitlab server
   * do-proj-gitlab-logs: to see the latest logs from the gitlab server
   * do-proj-gitlab-attach: to attach to the gitlab running docker container.
+'
+# ------------------------------------------------------------------------------
+# gitlabrunner plugin
+# ------------------------------------------------------------------------------
+_do_gitlabrunner 'proj'
+_do_log_info 'app' 'Turns on gitlabrunner support, please try:
+  * do-proj-gitlabrunner-help: to see available commands
+  * do-proj-gitlabrunner-start: to start the gitlab runner server
+  * do-proj-gitlabrunner-stop: to stop the gitlab runner server
+  * do-proj-gitlabrunner-status: to see the status the gitlab runner server
+  * do-proj-gitlabrunner-logs: to see the latest logs from the gitlab runner server
+  * do-proj-gitlabrunner-attach: to attach to the gitlab running runner docker container.
 '
 # ------------------------------------------------------------------------------
 # drone plugin
