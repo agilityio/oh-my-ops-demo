@@ -7,7 +7,7 @@ fi
 # The git repository that do installed from.
 # https://github.com/agilityio/oh-my-ops
 DO_INSTALL_REPO="agilityio/oh-my-ops"
-DO_VERSION="0.1.2"
+DO_VERSION="0.1.3"
 
 # The array of plugin name to be included. If this variable is not specified
 # all plugins found will be included by default.
