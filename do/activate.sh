@@ -7,20 +7,28 @@ fi
 # The git repository that do installed from.
 # https://github.com/agilityio/oh-my-ops
 DO_INSTALL_REPO="agilityio/oh-my-ops"
-DO_VERSION="0.1.2"
+DO_VERSION="0.1.3"
 
 # The array of plugin name to be included. If this variable is not specified
 # all plugins found will be included by default.
 
-DO_PLUGINS="proj git full prompt banner mongo postgres keycloak neo4j redis npm tmux make sphinx exec mvn vg"
+DO_PLUGINS="proj git full prompt banner hostfile
+docker docker-compose
+mongo postgres keycloak neo4j redis rabbitmq
+maildev jupyter
+artifactory registry pypiserver
+gitlab gitlabrunner drone sftp jenkins
+npm tmux make sphinx exec mvn vg"
+
 DO_ENVS='local prod'
 
 cd do
 source "src/init.sh"
+source "src/drone.sh"
+source "src/gitlabrunner.sh"
 cd ..
 
 _do_log_level_info 'app'
-
 
 # ------------------------------------------------------------------------------
 # proj plugin
@@ -41,13 +49,13 @@ _do_full_proj 'proj'
 
 # ------------------------------------------------------------------------------
 # git plugin
-# 
+#
 # Please try:
 # ------------------------------------------------------------------------------
 # Enables git support at the proj level.
 # If you do multi-repo approach, you can specify the project starts
 # at the parent directory of all git repositories
-# and the defines sub repos below that and enable git support for all 
+# and the defines sub repos below that and enable git support for all
 # of them. Notes that this plugin expects to see "./.git" directory exists.
 _do_git 'proj'
 _do_log_info 'app' 'Turns on git support, please try:
@@ -55,6 +63,19 @@ _do_log_info 'app' 'Turns on git support, please try:
   * do-proj-git-status: to see the status of the git tree.
 '
 
+
+# ------------------------------------------------------------------------------
+# sftp plugin
+# ------------------------------------------------------------------------------
+_do_sftp 'proj'
+_do_log_info 'app' 'Turns on sftp support, please try:
+  * do-proj-sftp-help: to see available commands
+  * do-proj-sftp-start: to start the sftp db server
+  * do-proj-sftp-stop: to stop the sftp db server
+  * do-proj-sftp-status: to see the status the sftp db server
+  * do-proj-sftp-logs: to see the latest logs from the sftp db server
+  * do-proj-sftp-attach: to attach to the mongodb running docker container.
+'
 # ------------------------------------------------------------------------------
 # mongo plugin
 # ------------------------------------------------------------------------------
@@ -108,6 +129,132 @@ _do_log_info 'app' 'Turns on neo4j support, please try:
 '
 
 # ------------------------------------------------------------------------------
+# artifactory plugin
+# ------------------------------------------------------------------------------
+_do_artifactory 'proj'
+_do_log_info 'app' 'Turns on artifactory support, please try:
+  * do-proj-artifactory-help: to see available commands
+  * do-proj-artifactory-start: to start the artifactory server
+  * do-proj-artifactory-stop: to stop the artifactory server
+  * do-proj-artifactory-status: to see the status the artifactory server
+  * do-proj-artifactory-logs: to see the latest logs from the artifactory server
+  * do-proj-artifactory-attach: to attach to the artifactory running docker container.
+'
+# ------------------------------------------------------------------------------
+# rabbitmq plugin
+# ------------------------------------------------------------------------------
+_do_rabbitmq 'proj'
+_do_log_info 'app' 'Turns on rabbitmq support, please try:
+  * do-proj-rabbitmq-help: to see available commands
+  * do-proj-rabbitmq-start: to start the rabbitmq server
+  * do-proj-rabbitmq-stop: to stop the rabbitmq server
+  * do-proj-rabbitmq-status: to see the status the rabbitmq server
+  * do-proj-rabbitmq-logs: to see the latest logs from the rabbitmq server
+  * do-proj-rabbitmq-attach: to attach to the rabbitmq running docker container.
+'
+
+# ------------------------------------------------------------------------------
+# maildev plugin
+# ------------------------------------------------------------------------------
+_do_maildev 'proj'
+_do_log_info 'app' 'Turns on maildev support, please try:
+  * do-proj-maildev-help: to see available commands
+  * do-proj-maildev-start: to start the maildev server
+  * do-proj-maildev-stop: to stop the maildev server
+  * do-proj-maildev-status: to see the status the maildev server
+  * do-proj-maildev-logs: to see the latest logs from the maildev server
+  * do-proj-maildev-attach: to attach to the maildev running docker container.
+'
+
+# ------------------------------------------------------------------------------
+# jupyter plugin
+# ------------------------------------------------------------------------------
+_do_jupyter 'proj'
+_do_log_info 'app' 'Turns on jupyter support, please try:
+  * do-proj-jupyter-help: to see available commands
+  * do-proj-jupyter-start: to start the jupyter server
+  * do-proj-jupyter-stop: to stop the jupyter server
+  * do-proj-jupyter-status: to see the status the jupyter server
+  * do-proj-jupyter-logs: to see the latest logs from the jupyter server
+  * do-proj-jupyter-attach: to attach to the jupyter running docker container.
+'
+
+# ------------------------------------------------------------------------------
+# gitlab plugin
+# ------------------------------------------------------------------------------
+_do_gitlab 'proj'
+_do_log_info 'app' 'Turns on gitlab support, please try:
+  * do-proj-gitlab-help: to see available commands
+  * do-proj-gitlab-start: to start the gitlab server
+  * do-proj-gitlab-stop: to stop the gitlab server
+  * do-proj-gitlab-status: to see the status the gitlab server
+  * do-proj-gitlab-logs: to see the latest logs from the gitlab server
+  * do-proj-gitlab-attach: to attach to the gitlab running docker container.
+'
+# ------------------------------------------------------------------------------
+# gitlabrunner plugin
+# ------------------------------------------------------------------------------
+_do_gitlabrunner 'proj'
+_do_log_info 'app' 'Turns on gitlabrunner support, please try:
+  * do-proj-gitlabrunner-help: to see available commands
+  * do-proj-gitlabrunner-start: to start the gitlab runner server
+  * do-proj-gitlabrunner-stop: to stop the gitlab runner server
+  * do-proj-gitlabrunner-status: to see the status the gitlab runner server
+  * do-proj-gitlabrunner-logs: to see the latest logs from the gitlab runner server
+  * do-proj-gitlabrunner-attach: to attach to the gitlab running runner docker container.
+'
+# ------------------------------------------------------------------------------
+# drone plugin
+# ------------------------------------------------------------------------------
+_do_drone 'proj'
+_do_log_info 'app' 'Turns on drone support, please try:
+  * do-proj-drone-help: to see available commands
+  * do-proj-drone-start: to start the drone server
+  * do-proj-drone-stop: to stop the drone server
+  * do-proj-drone-status: to see the status the drone server
+  * do-proj-drone-logs: to see the latest logs from the drone server
+  * do-proj-drone-attach: to attach to the drone running docker container.
+'
+# ------------------------------------------------------------------------------
+# jenkins plugin
+# ------------------------------------------------------------------------------
+_do_jenkins 'proj'
+_do_log_info 'app' 'Turns on jenkins support, please try:
+  * do-proj-jenkins-help: to see available commands
+  * do-proj-jenkins-start: to start the jenkins server
+  * do-proj-jenkins-stop: to stop the jenkins server
+  * do-proj-jenkins-status: to see the status the jenkins server
+  * do-proj-jenkins-logs: to see the latest logs from the jenkins server
+  * do-proj-jenkins-attach: to attach to the jenkins running docker container.
+'
+
+# ------------------------------------------------------------------------------
+# registry plugin
+# ------------------------------------------------------------------------------
+_do_registry 'proj'
+_do_log_info 'app' 'Turns on registry support, please try:
+  * do-proj-registry-help: to see available commands
+  * do-proj-registry-start: to start the registry server
+  * do-proj-registry-stop: to stop the registry server
+  * do-proj-registry-status: to see the status the registry server
+  * do-proj-registry-logs: to see the latest logs from the registry server
+  * do-proj-registry-attach: to attach to the registry running docker container.
+'
+
+# ------------------------------------------------------------------------------
+# pypiserver plugin
+# ------------------------------------------------------------------------------
+_do_pypiserver 'proj'
+_do_log_info 'app' 'Turns on pypiserver support, please try:
+  * do-proj-pypiserver-help: to see available commands
+  * do-proj-pypiserver-start: to start the pypiserver server
+  * do-proj-pypiserver-stop: to stop the pypiserver server
+  * do-proj-pypiserver-status: to see the status the pypiserver server
+  * do-proj-pypiserver-logs: to see the latest logs from the pypiserver server
+  * do-proj-pypiserver-attach: to attach to the pypiserver running docker container.
+'
+
+# ------------------------------------------------------------------------------
 # keycloak plugin
 # ------------------------------------------------------------------------------
 _do_keycloak 'proj'
@@ -130,7 +277,7 @@ _do_log_info 'app' 'Turns on vagrant support, please try:
   * do-vgdemo-vg-start: starts and provisions the vagrant environment.
   * do-vgdemo-vg-stop: stops the vagrant machine.
   * do-vgdemo-vg-attach: connects to machine via SSH.
-'  
+'
 
 # ------------------------------------------------------------------------------
 # tmux plugin
@@ -147,7 +294,6 @@ _do_log_info 'app' 'Turns on script exec support for ./bin directory, please try
   * do-proj-exec-good-bye: to trigger the "bin/good/bye.sh" script.
 '
 
-
 # ------------------------------------------------------------------------------
 # sphinx plugin
 # ------------------------------------------------------------------------------
@@ -158,7 +304,7 @@ _do_sphinx 'doc'
 
 _do_log_info 'app' 'Turns on sphinx support at ./doc directory, please try:
   * do-doc-sphinx-help: to see available commands
-  * do-doc-sphinx-start: to start the live reload server. 
+  * do-doc-sphinx-start: to start the live reload server.
     After this, you can access the live html document at http://localhost:8383
   * do-doc-sphinx-stop: to stop the live html document server.
   * do-doc-sphinx-status: to see the status the sphinx doc server
@@ -180,6 +326,31 @@ _do_log_info 'app' 'Turns on make support at ./make directory, please try:
   * do-makedemo-make-clean: to trigger the "clean" target defined in the Makefile.
   * do-makedemo-make-build: to trigger the "build" target defined in the Makefile.
 '
+# ------------------------------------------------------------------------------
+# docker plugin
+# ------------------------------------------------------------------------------
+
+# Makes 'docker' directory is a sub repository, named it dockerdemo.
+_do_repo 'docker' 'dockerdemo'
+
+_do_docker 'dockerdemo'
+_do_log_info 'app' 'Turns on docker support at ./docker directory, please try:
+  * do-dockerdemo-docker-help: to see available commands
+  * do-dockerdemo-docker-build: to build the docker file found.
+'
+
+# ------------------------------------------------------------------------------
+# docker-compose plugin
+# ------------------------------------------------------------------------------
+
+# Makes 'docker' directory is a sub repository, named it dockerdemo.
+_do_repo 'docker-compose' 'dockercomposedemo'
+
+_do_docker_compose 'dockercomposedemo'
+_do_log_info 'app' 'Turns on docker support at ./docker-compose directory, please try:
+  * do-dockercomposedemo-docker-compose-help: to see available commands
+  * do-dockercomposedemo-docker-compose-build: to build the docker compose file found.
+'
 
 # ------------------------------------------------------------------------------
 # mvn plugin
@@ -200,12 +371,12 @@ _do_log_info 'app' 'Turns on maven build support at ./mvn/blog directory, please
 # http://patorjk.com/software/taag/#p=display&f=ANSI%20Shadow&t=hugepig
 _do_banner 'Demo.'
 
-
 # Marks that this is the end of the activation script.
 # This will trigger any additional command send in with -e argument.
-# For instance, if you run the script with 
-# bash do/activate.sh -e "do-proj-full-clean" -e "do-proj-full-build" then 
+# For instance, if you run the script with
+# bash do/activate.sh -e "do-proj-full-clean" -e "do-proj-full-build" then
 # the two commands, clean & build shall be executed at this point.
-# This bring the ability to run any command without the 
+# This bring the ability to run any command without the
 # need of activate the oh-my-ops environment.
 _do_activate_finished
+

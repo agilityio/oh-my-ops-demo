@@ -1,0 +1,9 @@
+bash-run:
+  stage: build
+  script:
+    - echo "Hello Bash"
+mvn-deploy:
+  image: maven:3.6-jdk-11
+  script:
+    - 'cd mvn/blog'
+    - 'mvn deploy -s ci_settings.xml'
